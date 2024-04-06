@@ -49,8 +49,17 @@ app.get("/leer", (req, res) => {
     });
 });
 
-
-
+app.get("/renombrar", (req, res) => {
+    const { nombre, nuevoNombre } = req.query
+    fs.rename(nombre, nuevoNombre, (err, data) => {
+        if(err){
+            res.send(`Error al renombrar el archivo`);
+        }
+        else{
+            res.send(`Archivo ${nombre} renombrado por ${nuevoNombre}`);
+        }
+    })
+});
 
 app.get("/eliminar", (req, res) => {
     const { archivo } = req.query;
