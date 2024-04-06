@@ -26,7 +26,7 @@ app.get("/crear", (req, res) => {
     fs.writeFile(archivo, contconfecha, (err) => {
 
         if(err){
-            res.send('Error al crear el archivo');
+            res.send(`Error al crear el archivo`);
         }
         else{
             res.send('Archivo creado con éxito!');
@@ -39,9 +39,10 @@ app.get("/leer", (req, res) => {
     const { archivo } = req.query;
     fs.readFile(archivo, 'utf8', (err, data) => {
         if(err){
-            res.send('Error al leer el archivo');
+            res.send(`Error al leer el archivo`);
         }
         else{
+            // Se utiliza <pre> para conservar formato, por ejemplo el salto de línea.
             res.send(`<pre>${data}</pre>`);            
         }
         
@@ -49,6 +50,20 @@ app.get("/leer", (req, res) => {
 });
 
 
+
+
+app.get("/eliminar", (req, res) => {
+    const { archivo } = req.query;
+    fs.unlink(archivo, (err, data) => {
+        if(err){
+            res.send(`Error al eliminar el archivo`);
+        }
+        else{
+            res.send(`Archivo ${archivo} eliminado con éxito`);
+        }
+    
+    });
+});
 
 
 // Ruta genérica 
