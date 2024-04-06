@@ -23,8 +23,28 @@ app.get("/crear", (req, res) => {
     // Le agregamos la fecha al contenido, con un salto de línea: 
     const contconfecha = `${formato}\n${contenido}`;
     // Utiliza File System para crear un archivo con el nombre y contenido recibidos
-    fs.writeFile(archivo, contconfecha, () => {
-    res.send('Archivo creado con éxito!');
+    fs.writeFile(archivo, contconfecha, (err) => {
+
+        if(err){
+            res.send('Error al crear el archivo');
+        }
+        else{
+            res.send('Archivo creado con éxito!');
+        }
+    
+    });
+});
+
+app.get("/leer", (req, res) => {
+    const { archivo } = req.query;
+    fs.readFile(archivo, 'utf8', (err, data) => {
+        if(err){
+            res.send('Error al leer el archivo');
+        }
+        else{
+            res.send(`<pre>${data}</pre>`);            
+        }
+        
     });
 });
 
