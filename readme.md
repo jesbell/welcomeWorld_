@@ -59,7 +59,7 @@ localhost:3001
 
 Si tienes algún problema o sugerencia, por favor abre un problema [aquí](https://github.com/jesbell/welcomeWorld_/issues).
 
-## Versionado 📌
+## Versionado  📌
 
 Usamos [Git](https://git-scm.com) para el versionado.
 
